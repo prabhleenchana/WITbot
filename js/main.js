@@ -14,7 +14,7 @@ var user = { message: "", counter: 0 };
 var questionsToAsk = [
     // { "question": "Hi there ! I'm WITbot", "answer": "" },
     // { "question": "What's your name?", "answer": "" },
-    { "question": "What area would you like more insight into?", "answer": "" },
+    // { "question": "What area would you like more insight into?", "answer": "" },
 
 ];
 
@@ -174,14 +174,21 @@ function showMenu() {
 
 sendBtn.addEventListener('click', function (e) {
 
-    if (userName = "") {
+    if (userName == "") {
 
-        let messageText = textbox.value.trim();
-        userName = messageText;
-        sendMessage(messageText);
-        textbox.value = "";
-        chatbotSendMessage("Hi " + userName + ", I'm WITbot");
-        askQuestion(messageText);
+        if (isNaN(userName)) { // if username not a number - execute this
+
+            let messageText = textbox.value.trim();
+            userName = messageText;
+            sendMessage(messageText);
+            textbox.value = "";
+            chatbotSendMessage("Hi " + userName + ", I'm WITbot");
+            // askQuestion(messageText);
+        }
+
+        else {
+            alert('please enter a name');
+        }
 
     }
 
@@ -204,15 +211,22 @@ sendBtn.addEventListener('click', function (e) {
 textbox.addEventListener('keypress', function (e) {
     if (e.which == 13) { // 13 = enter button for user keyboard
 
-        if (userName = "") {
+        if (userName == "") {
 
-            let messageText = textbox.value.trim();
-            userName = messageText;
-            sendMessage(messageText);
-            textbox.value = "";
-            chatbotSendMessage("Hi " + userName + ", I'm WITbot");
-            askQuestion(messageText);
+            if (isNaN(userName)) { // if username not a number - execute this
 
+                let messageText = textbox.value.trim();
+                userName = messageText;
+                sendMessage(messageText);
+                textbox.value = "";
+                chatbotSendMessage("Hi " + userName + ", I'm WITbot");
+                // askQuestion(messageText);
+            }
+
+            else {
+                alert('please enter a name');
+
+            }
         }
         else if (textbox.value == "") {
             alert('Please type in a message'); // display alert message for no blanks - user XP better
