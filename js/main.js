@@ -4,6 +4,7 @@ var sendBtn = document.getElementById('sendBtn');
 var textbox = document.getElementById('textbox');
 // reference to container
 var chatContainer = document.getElementById('chatContainer');
+var userName = ""; // user name input
 
 var user = { message: "", counter: 0 };
 // ^^ global variable - stores users latest message
@@ -11,10 +12,10 @@ var user = { message: "", counter: 0 };
 //coding integrated and learnt from Udemy Javascript course
 
 var questionsToAsk = [
-    { "question": "Hi there ! I'm WITbot", "answer": "" },
-    { "question": "What's your name?", "answer": "" },
+    // { "question": "Hi there ! I'm WITbot", "answer": "" },
+    // { "question": "What's your name?", "answer": "" },
     { "question": "What area would you like more insight into?", "answer": "" },
-   
+
 ];
 
 let options = [
@@ -27,8 +28,10 @@ let options = [
 
 ];
 
-askQuestion();
-showMenu();
+
+// showMenu();
+chatbotSendMessage("Hey there, what's your name?");
+//askQuestion();
 // chatbotSendMessage("Hi, I'm WITbot! Here to help ");
 // chatbotSendMessage("Please pick an option: ");
 // showMenu(); // chatbot 4
@@ -38,14 +41,14 @@ function askQuestion() {
 
 
     if (questionsToAsk.length > user.counter) {
-         setTimeout(function () {
+        setTimeout(function () {
 
-              chatbotSendMessage(questionsToAsk[user.counter].question);
-              user.counter++;
-         }, 1000);
+            chatbotSendMessage(questionsToAsk[user.counter].question);
+            user.counter++;
+        }, 1000);
 
 
-         console.log(questionsToAsk[user.counter - 1]);
+        console.log(questionsToAsk[user.counter - 1]);
     }
 
 }
@@ -137,7 +140,7 @@ function restaurantResponseToUser(messageText) {
             chatbotSendMessage("Total Price : $" + getTotalPrice());
             chatbotSendMessage("please click this link to complete checkout:");
             chatbotSendMessage("<a href='https://google.com'>Checkout</a>");
-            //send meals + ticket + payment status to backend
+        //send meals + ticket + payment status to backend
 
         //     break;
         // default:               // if user choices matches nothing 
@@ -171,17 +174,28 @@ function showMenu() {
 
 sendBtn.addEventListener('click', function (e) {
 
-    if (textbox.value == "") {
+    if (userName = "") {
+
+        let messageText = textbox.value.trim();
+        userName = messageText;
+        sendMessage(messageText);
+        textbox.value = "";
+        chatbotSendMessage("Hi " + userName + ", I'm WITbot");
+        askQuestion(messageText);
+
+    }
+
+    else if (textbox.value == "") {
         alert('Please type in a message');
 
     } else {
+
 
         let messageText = textbox.value.trim();
         user.message = messageText;
         sendMessage(messageText);
         textbox.value = "";
 
-        askQuestion(messageText);
         restaurantResponseToUser(messageText);
 
     }
@@ -189,22 +203,33 @@ sendBtn.addEventListener('click', function (e) {
 
 textbox.addEventListener('keypress', function (e) {
     if (e.which == 13) { // 13 = enter button for user keyboard
-        if (textbox.value == "") {
+
+        if (userName = "") {
+
+            let messageText = textbox.value.trim();
+            userName = messageText;
+            sendMessage(messageText);
+            textbox.value = "";
+            chatbotSendMessage("Hi " + userName + ", I'm WITbot");
+            askQuestion(messageText);
+
+        }
+        else if (textbox.value == "") {
             alert('Please type in a message'); // display alert message for no blanks - user XP better
 
         } else {
+
 
             let messageText = textbox.value.trim(); // trim for spaces
             user.message = messageText; // for processing user message 
             sendMessage(messageText);
             textbox.value = ""; //message box to be empty after sending text
 
-            askQuestion(messageText);
             restaurantResponseToUser(messageText);
 
         }
 
     }
 
-    
+
 });
