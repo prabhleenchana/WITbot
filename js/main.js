@@ -33,7 +33,7 @@ chatbotSendMessage("Hey there, what's your name?");
 //askQuestion();
 // chatbotSendMessage("Hi, I'm WITbot! Here to help ");
 // chatbotSendMessage("Please pick an option: ");
-// showMenu(); // chatbot 4
+//showMenu(); // chatbot 4
 
 // chat asks questions
 function askQuestion() {
@@ -102,29 +102,27 @@ function sendMessage(messageText) {
 
 function botResponseToUser(messageText) {
     let userChoice = parseInt(messageText.trim()); // store in var/convert string to int/and trim any spaces from user choice
+console.log(messageText);
+console.log(userChoice);
 
     switch (userChoice) {
 
         case 1:
             chatbotSendMessage('you chose Careers in CS');
-            user.meals.push(options[1]);
             chatbotSendMessage('Something else? if yes choose a new number or 50 to end');
 
             break; // brk each time to get out of switch 
         case 2:
             chatbotSendMessage('you chose Opportunities');
-            user.meals.push(options[2]);
             chatbotSendMessage('Something else? if yes choose meal number or 50 to checkout');
             break;
         case 3:
             chatbotSendMessage('you chose Resources');
-            user.meals.push(options[3]);
             chatbotSendMessage('Something else? if yes choose meal number or 50 to checkout');
             break;
 
         case 4:
             chatbotSendMessage('you chose Skills in CS');
-            user.meals.push(options[4]);
             chatbotSendMessage('Something else? if yes choose meal number or 50 to checkout');
             break;
 
@@ -172,17 +170,19 @@ function showMenu() {
 }
 
 sendBtn.addEventListener('click', function (e) {
+    let messageText = textbox.value.trim();
+    userName = messageText;
 
     if (userName != "") {
 
         if (isNaN(userName)) { // if username not a number - execute this
 
-            let messageText = textbox.value.trim();
-            userName = messageText;
+
             sendMessage(messageText);
             textbox.value = "";
             chatbotSendMessage("Hi " + userName + ", I'm WITbot");
-            // askQuestion(messageText);
+            showMenu();
+     //       askQuestion(messageText);
         }
 
         else {
@@ -207,20 +207,24 @@ sendBtn.addEventListener('click', function (e) {
     }
 });
 
+
 textbox.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
+
+        let messageText = textbox.value.trim();
+        userName = messageText;
 
         if (userName != "") {
             console.log(isNaN(userName));
 
             if (isNaN(userName)) { // if username not a number - execute this
 
-                userName = messageText;
-                let messageText = textbox.value.trim();
+
                 sendMessage(messageText);
                 textbox.value = "";
                 chatbotSendMessage("Hi " + userName + ", I'm WITbot");
-                // askQuestion(messageText);
+                showMenu();
+               // askQuestion(messageText);
             }
 
             else {
