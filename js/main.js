@@ -20,16 +20,15 @@ var questionsToAsk = [
 
 let options = [
     {},
-    { number: 1, choice: "1", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=restaurantResponseToUser('1')>Careers in CS</button>" },
-    { number: 2, choice: "2", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=restaurantResponseToUser('2')>Opportunities</button>" },
-    { number: 3, choice: "3", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=restaurantResponseToUser('3')>Resources</button>" },
-    { number: 4, choice: "4", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=restaurantResponseToUser('4')>Skills in CS</button>" },
-    { number: 5, choice: "5", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=restaurantResponseToUser('5')>Women in Tech</button>" },
+    { number: 1, choice: "1", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=botResponseToUser('1')>Careers in CS</button>" },
+    { number: 2, choice: "2", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=botResponseToUser('2')>Opportunities</button>" },
+    { number: 3, choice: "3", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=botResponseToUser('3')>Resources</button>" },
+    { number: 4, choice: "4", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=botResponseToUser('4')>Skills in CS</button>" },
+    { number: 5, choice: "5", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=botResponseToUser('5')>Women in Tech</button>" },
 
 ];
 
 
-// showMenu();
 chatbotSendMessage("Hey there, what's your name?");
 //askQuestion();
 // chatbotSendMessage("Hi, I'm WITbot! Here to help ");
@@ -101,7 +100,7 @@ function sendMessage(messageText) {
 
 }
 
-function restaurantResponseToUser(messageText) {
+function botResponseToUser(messageText) {
     let userChoice = parseInt(messageText.trim()); // store in var/convert string to int/and trim any spaces from user choice
 
     switch (userChoice) {
@@ -174,7 +173,7 @@ function showMenu() {
 
 sendBtn.addEventListener('click', function (e) {
 
-    if (userName == "") {
+    if (userName != "") {
 
         if (isNaN(userName)) { // if username not a number - execute this
 
@@ -203,20 +202,21 @@ sendBtn.addEventListener('click', function (e) {
         sendMessage(messageText);
         textbox.value = "";
 
-        restaurantResponseToUser(messageText);
+        botResponseToUser(messageText);
 
     }
 });
 
 textbox.addEventListener('keypress', function (e) {
-    if (e.which == 13) { // 13 = enter button for user keyboard
+    if (e.key === 'Enter') {
 
-        if (userName == "") {
+        if (userName != "") {
+            console.log(isNaN(userName));
 
             if (isNaN(userName)) { // if username not a number - execute this
 
-                let messageText = textbox.value.trim();
                 userName = messageText;
+                let messageText = textbox.value.trim();
                 sendMessage(messageText);
                 textbox.value = "";
                 chatbotSendMessage("Hi " + userName + ", I'm WITbot");
@@ -239,7 +239,7 @@ textbox.addEventListener('keypress', function (e) {
             sendMessage(messageText);
             textbox.value = ""; //message box to be empty after sending text
 
-            restaurantResponseToUser(messageText);
+            botResponseToUser(messageText);
 
         }
 
