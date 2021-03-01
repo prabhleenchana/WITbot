@@ -6,7 +6,7 @@ var chatContainer = document.getElementById('chatContainer');
 var userName = ""; // user name input
 
 //regular expression for letters ONLY
-const regex = /^[a-zA-Z]+$/;
+const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/;
 
 var user = { message: "", counter: 0 };
 // ^^ global variable - stores users latest message
@@ -16,11 +16,11 @@ chatbotSendMessage("Hey there, what's your name?");
 
 let options = [
     {},
-    { number: 1, choice: "1", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('1')>Careers in CS</button>" },
-    { number: 2, choice: "2", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Opportunities</button>" },
-    { number: 3, choice: "3", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('3')>Resources</button>" },
-    { number: 4, choice: "4", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('4')>Skills in CS</button>" },
-    { number: 5, choice: "5", buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
+    { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('1')>Careers in CS</button>" },
+    { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Opportunities</button>" },
+    { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('3')>Resources</button>" },
+    { number: 4, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('4')>Skills in CS</button>" },
+    { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
 
 ];
 
@@ -110,7 +110,7 @@ function optionsSelection() {
 
     for (let i = 1; i < options.length; i++) {
         messageElement.innerHTML += "<br>" + // += add previous choice and apend next one // break line with br tag
-            "<span style=" + "margin-top:10px; padding:10px" + ">" + options[i].number + " - " + "" + "</span>"
+            "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
             + options[i].buttonClicked;
     }
 
@@ -125,7 +125,7 @@ sendBtn.addEventListener('click', function (e) {
 
     if (userName != "") {
 
-        if (isNaN(userName)) { // if username not a number - execute this
+        if (!regex.test(userName)) { // if username not a number - execute this
 
             sendMessage(messageText);
             textbox.value = "";
@@ -163,9 +163,8 @@ textbox.addEventListener('keypress', function (e) {
         userName = messageText;
 
         if (userName != "") {
-            console.log(isNaN(userName));
-
-            if (isNaN(userName)) { // if username not a number - execute this
+            // !regex.test(messageText.value)
+            if (!regex.test(userName)) { // if username not a number - execute this
 
                 sendMessage(messageText);
                 textbox.value = "";
@@ -173,7 +172,7 @@ textbox.addEventListener('keypress', function (e) {
                 chatbotSendMessage("Here to help, pick an option:");
                 optionsSelection();
             }
-
+            
             else {
                 alert('please enter a name');
 
@@ -197,3 +196,5 @@ textbox.addEventListener('keypress', function (e) {
 
 
 });
+
+// console.log(isNaN(userName));
