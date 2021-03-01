@@ -91,9 +91,10 @@ function userOptionSelection(messageText) {
         case 5:
             sendMessage('Women in Tech');
             break;
-        default:               // if user choices matches nothing 
-            alert("Please choose a valid option");  // 1/2/3 choice option error
-            chatbotSendMessage("Please choose a valid number");// option error in chat
+        // default:               // if user choices matches nothing 
+        //     alert("Please choose a valid option");  // 1/2/3 choice option error
+        //     chatbotSendMessage("Please choose a valid number");// option error in chat
+
     }
 
     // console.log(user);
@@ -114,7 +115,7 @@ function optionsSelection() {
             + options[i].buttonClicked;
     }
 
-    messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 2000 });
+    messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1500 });
     chatContainer.appendChild(messageElement);     // parse text - string to int
 
 }
@@ -129,9 +130,15 @@ sendBtn.addEventListener('click', function (e) {
 
             sendMessage(messageText);
             textbox.value = "";
-            chatbotSendMessage("Hi " + userName + ", I'm WITbot !");
-            chatbotSendMessage("Here to help, pick an option:");
-            optionsSelection();
+            setTimeout(() => {
+                chatbotSendMessage("Hi " + userName + ", I'm WITbot")
+            }, 1000);
+            setTimeout(() => {
+                chatbotSendMessage("Here to help, pick an option:")
+                optionsSelection();
+            }, 2000);
+
+
 
         }
 
@@ -163,16 +170,23 @@ textbox.addEventListener('keypress', function (e) {
         userName = messageText;
 
         if (userName != "") {
-            // !regex.test(messageText.value)
+
             if (!regex.test(userName)) { // if username not a number - execute this
 
                 sendMessage(messageText);
                 textbox.value = "";
-                chatbotSendMessage("Hi " + userName + ", I'm WITbot");
-                chatbotSendMessage("Here to help, pick an option:");
-                optionsSelection();
+                setTimeout(() => {
+                    chatbotSendMessage("Hi " + userName + ", I'm WITbot")
+                }, 1000);
+                setTimeout(() => {
+                    chatbotSendMessage("Here to help, pick an option:")
+                    optionsSelection();
+                }, 2000);
+
+
+
             }
-            
+
             else {
                 alert('please enter a name');
 
@@ -197,4 +211,3 @@ textbox.addEventListener('keypress', function (e) {
 
 });
 
-// console.log(isNaN(userName));
