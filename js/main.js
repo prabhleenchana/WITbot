@@ -82,6 +82,7 @@ function userOptionSelection(messageText) {
             break;
         case 3:
             sendMessage('Resources');
+            initialiseOptions();
             break;
 
         case 4:
@@ -95,7 +96,6 @@ function userOptionSelection(messageText) {
         //     alert("Please choose a valid option");  // 1/2/3 choice option error
         //     chatbotSendMessage("Please choose a valid number");// option error in chat
     }
-    initialiseOptions();
     // console.log(user);
 }
 
@@ -119,6 +119,7 @@ function optionsSelection() {
 
 }
 //menu options end
+
 
 // resources button links
 function initialiseOptions() {
