@@ -66,7 +66,7 @@ function sendMessage(messageText) {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
 }
-
+// menu options start
 function userOptionSelection(messageText) {
     let userChoice = parseInt(messageText.trim()); // store in var/convert string to int/and trim any spaces from user choice
     // console.log(messageText);
@@ -94,9 +94,8 @@ function userOptionSelection(messageText) {
         // default:               // if user choices matches nothing 
         //     alert("Please choose a valid option");  // 1/2/3 choice option error
         //     chatbotSendMessage("Please choose a valid number");// option error in chat
-
     }
-
+    initialiseOptions();
     // console.log(user);
 }
 
@@ -110,7 +109,7 @@ function optionsSelection() {
     messageElement.style.padding = "5px";
 
     for (let i = 1; i < options.length; i++) {
-        messageElement.innerHTML += "<br>" + // += add previous choice and apend next one // break line with br tag
+        messageElement.innerHTML += "<br>" + // break line with br tag
             "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
             + options[i].buttonClicked;
     }
@@ -119,6 +118,58 @@ function optionsSelection() {
     chatContainer.appendChild(messageElement);     // parse text - string to int
 
 }
+//menu options end
+
+// resources button links
+function initialiseOptions() {
+
+    let resourceOptions = [
+        {},
+        { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('1')>Online coding classes</button>" },
+        { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('2')>Workshops</button>" },
+        { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('3')>STEM sites</button>" },
+    ];
+
+    var messageElement = document.createElement('div');
+    messageElement.classList.add('w-50');
+    messageElement.classList.add('float-left');
+    messageElement.classList.add('shadow-sm');
+    messageElement.style.margin = "10px";
+    messageElement.style.padding = "5px";
+
+for (let i = 1; i < resourceOptions.length; i++) { //increment
+    messageElement.innerHTML += "<br>" +
+        "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
+        + resourceOptions[i].buttonClicked;
+}
+
+messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1000 });
+chatContainer.appendChild(messageElement);
+
+}
+
+function resourcesSelection(messageText) {
+
+    let userChoice = parseInt(messageText.trim());
+
+    switch (userChoice) {
+
+        case 1:
+            sendMessage("Online coding classes");
+            window.open('https://www.codecademy.com/');
+            break;
+        case 2:
+            sendMessage("Workshops");
+            window.open('https://www.whymaker.co/all_workshops.html');
+            break;
+        case 3:
+            sendMessage("STEM sites");
+            window.open('https://www.stem.org.uk/');
+            break;
+    }
+
+}
+//resources button links ends
 
 sendBtn.addEventListener('click', function (e) {
     let messageText = textbox.value.trim();
@@ -137,7 +188,7 @@ sendBtn.addEventListener('click', function (e) {
                 chatbotSendMessage("Here to help, pick an option:")
                 optionsSelection();
             }, 2000);
-
+            resourcesSelection();
 
 
         }
@@ -182,8 +233,7 @@ textbox.addEventListener('keypress', function (e) {
                     chatbotSendMessage("Here to help, pick an option:")
                     optionsSelection();
                 }, 2000);
-
-
+                resourcesSelection();
 
             }
 
