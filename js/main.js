@@ -20,7 +20,7 @@ let options = [
     { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Opportunities</button>" },
     { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('3')>Resources</button>" },
     { number: 4, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('4')>Skills in CS</button>" },
-    { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
+    // { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
 
 ];
 
@@ -36,7 +36,7 @@ function chatbotSendMessage(messageText) {
     messageElement.innerHTML = "<span>Chatbot: </span>" +
         "<span style=" + "margin-top:10px; padding:10px" + ">" + messageText + "</span>";
 
-    messageElement.animate([{ easing: "ease-in", opacity: 0.3 }, { opacity: 1 }], { duration: 1500 }); // message animations
+    messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
     // parse text 
     chatContainer.appendChild(messageElement);
 
@@ -57,7 +57,7 @@ function sendMessage(messageText) {
     messageElement.innerHTML = "<span>You: </span>" +
         "<span style=" + "margin-top:10px; padding:10px" + ">" + messageText + "</span>";
 
-    messageElement.animate([{ easing: "ease-in", opacity: 0.3 }, { opacity: 1 }], { duration: 1500 }); // message animations
+    messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
 
     // parse text 
     chatContainer.appendChild(messageElement);
@@ -114,12 +114,11 @@ function optionsSelection() {
             + options[i].buttonClicked;
     }
 
-    messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1500 });
+    messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 });
     chatContainer.appendChild(messageElement);     // parse text - string to int
 
 }
 //menu options end
-
 
 // resources button links
 function initialiseOptions() {
@@ -129,6 +128,10 @@ function initialiseOptions() {
         { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('1')>Online coding classes</button>" },
         { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('2')>Workshops</button>" },
         { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('3')>STEM sites</button>" },
+        { number: 4, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('4')>Technology keynote speakers</button>" },
+        { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('5')>Inspirational women in Tech</button>" },
+        { number: 6, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('6')>support groups</button>" },
+
     ];
 
     var messageElement = document.createElement('div');
@@ -138,14 +141,15 @@ function initialiseOptions() {
     messageElement.style.margin = "10px";
     messageElement.style.padding = "5px";
 
-for (let i = 1; i < resourceOptions.length; i++) { //increment
-    messageElement.innerHTML += "<br>" +
-        "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
-        + resourceOptions[i].buttonClicked;
-}
+    for (let i = 1; i < resourceOptions.length; i++) { //increment
+        messageElement.innerHTML += "<br>" +
+            "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
+            + resourceOptions[i].buttonClicked;
+    }
 
-messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1000 });
-chatContainer.appendChild(messageElement);
+    messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1000 });
+    chatContainer.appendChild(messageElement);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 
 }
 
@@ -157,14 +161,33 @@ function resourcesSelection(messageText) {
 
         case 1:
             sendMessage("Online coding classes");
+            confirm("opening a new site");
+            chatbotSendMessage("")
             window.open('https://www.codecademy.com/');
+            window.open('https://www.futurelearn.com/subjects/it-and-computer-science-courses/coding-programming');
+            window.open('https://www.edx.org/learn/coding');
+            window.open('https://www.coursera.org/courses?query=coding');
+            
             break;
         case 2:
             sendMessage("Workshops");
+            alert("opening a new site");
             window.open('https://www.whymaker.co/all_workshops.html');
             break;
         case 3:
             sendMessage("STEM sites");
+            window.open('https://www.stem.org.uk/');
+            break;
+        case 4:
+            sendMessage("Technology keynote speakers");
+            window.open('https://www.stem.org.uk/');
+            break;
+        case 5:
+            sendMessage("Inspirational women in Tech");
+            window.open('https://www.stem.org.uk/');
+            break;
+        case 6:
+            sendMessage("Support groups");
             window.open('https://www.stem.org.uk/');
             break;
     }
@@ -228,7 +251,7 @@ textbox.addEventListener('keypress', function (e) {
                 sendMessage(messageText);
                 textbox.value = "";
                 setTimeout(() => {
-                    chatbotSendMessage("Hi " + userName + ", I'm WITbot")
+                    chatbotSendMessage("Hi " + userName + "! I'm WITbot")
                 }, 1000);
                 setTimeout(() => {
                     chatbotSendMessage("Here to help, pick an option:")
