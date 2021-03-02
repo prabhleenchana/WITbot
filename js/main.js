@@ -1,12 +1,10 @@
-//elements - declaring variables
 var textbox = document.getElementById('textbox');
 var sendBtn = document.getElementById('sendBtn');
-// references to container
+
 var chatContainer = document.getElementById('chatContainer');
 var userName = ""; // user name input
 
-//regular expression for letters ONLY
-const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/;
+const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/; //regular expression for letters ONLY
 
 var user = { message: "", counter: 0 };
 // ^^ global variable - stores users latest message
@@ -89,9 +87,9 @@ function userOptionSelection(messageText) {
             sendMessage('Skills in Computer Science');
             break;
 
-        case 5:
-            sendMessage('Women in Tech');
-            break;
+        // case 5:
+        //     sendMessage('Women in Tech');
+        //     break;
         // default:               // if user choices matches nothing 
         //     alert("Please choose a valid option");  // 1/2/3 choice option error
         //     chatbotSendMessage("Please choose a valid number");// option error in chat
@@ -122,16 +120,13 @@ function optionsSelection() {
 
 // resources button links
 function initialiseOptions() {
-
     let resourceOptions = [
         {},
         { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('1')>Online coding classes</button>" },
         { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('2')>Workshops</button>" },
-        { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('3')>STEM sites</button>" },
+        { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('3')>STEM organisations</button>" },
         { number: 4, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('4')>Technology keynote speakers</button>" },
         { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('5')>Inspirational women in Tech</button>" },
-        { number: 6, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=resourcesSelection('6')>support groups</button>" },
-
     ];
 
     var messageElement = document.createElement('div');
@@ -140,6 +135,7 @@ function initialiseOptions() {
     messageElement.classList.add('shadow-sm');
     messageElement.style.margin = "10px";
     messageElement.style.padding = "5px";
+    chatbotSendMessage("What resources would you like access to?");
 
     for (let i = 1; i < resourceOptions.length; i++) { //increment
         messageElement.innerHTML += "<br>" +
@@ -147,7 +143,7 @@ function initialiseOptions() {
             + resourceOptions[i].buttonClicked;
     }
 
-    messageElement.animate([{ easing: "ease-in", opacity: 0.4 }, { opacity: 1 }], { duration: 1000 });
+    messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 });
     chatContainer.appendChild(messageElement);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
@@ -156,39 +152,58 @@ function initialiseOptions() {
 function resourcesSelection(messageText) {
 
     let userChoice = parseInt(messageText.trim());
-
+   
     switch (userChoice) {
 
         case 1:
             sendMessage("Online coding classes");
-            confirm("opening a new site");
-            chatbotSendMessage("")
+            chatbotSendMessage("Learn new coding languages and expand your skills " + userName + "!")
+            confirm("Opening a new site");
             window.open('https://www.codecademy.com/');
-            window.open('https://www.futurelearn.com/subjects/it-and-computer-science-courses/coding-programming');
-            window.open('https://www.edx.org/learn/coding');
-            window.open('https://www.coursera.org/courses?query=coding');
-            
+            window.open('https://adadevelopersacademy.org/');
+            window.open('https://www.womenwhocode.com/');
+            window.open('https://skillcrush.com/');
+
             break;
         case 2:
             sendMessage("Workshops");
-            alert("opening a new site");
+            chatbotSendMessage(userName + ", by attending workshops you can gain a lot of insight into the industry")
+            confirm("Opening a new site");
+            window.open('https://www.codecademy.com/');
             window.open('https://www.whymaker.co/all_workshops.html');
             break;
+
         case 3:
-            sendMessage("STEM sites");
+            sendMessage("STEM organisations");
+            chatbotSendMessage("There are many sources of support for you " + userName)
+            chatbotSendMessage("Have a read of what individuals like you can offer the industry")
+            confirm("Opening a new site");
             window.open('https://www.stem.org.uk/');
+            window.open('https://www.womeninstem.co.uk/');
+            window.open('https://stemettes.org/');
+            window.open('https://www.wisecampaign.org.uk/wise-network/women-in-stem-networks/');
             break;
+
         case 4:
             sendMessage("Technology keynote speakers");
-            window.open('https://www.stem.org.uk/');
+            chatbotSendMessage("Attend these virtual events " + userName + ', you will be well informed in all careers and paths in the technology industry best suited to you')
+            confirm("Opening a new site");
+            window.open('https://www.jla.co.uk/inspirational-speakers-women-stem-science-technology-engineering-mathematics/');
+            window.open('https://www.stemwomen.co.uk/blog/2020/08/stem-women-to-host-inspiring-two-day-virtual-tech-careers-event-this-september');
+            window.open('https://www.speakerscorner.co.uk/listing/technology-speakers');
+            window.open('https://techsavvywomen.net/keynotes/');
             break;
+
         case 5:
             sendMessage("Inspirational women in Tech");
-            window.open('https://www.stem.org.uk/');
-            break;
-        case 6:
-            sendMessage("Support groups");
-            window.open('https://www.stem.org.uk/');
+            chatbotSendMessage(userName + ', these amazing women have helped shape the industry, so that you can come and shape the future!')
+            confirm("Opening a new site");
+            window.open('https://www.everywoman.com/my-development/learning-areas/articles/inspirational-women-history-technology-edition');
+            window.open('https://www.brainbridge.be/news/top-11-inspirational-women-in-tech-past-and-present');
+            window.open('https://www.pocket-lint.com/gadgets/news/151345-the-most-inspiring-women-in-tech');
+            window.open('https://www.womenintech.co.uk/10-famous-women-technology-changed-world');
+            window.open('https://bigthink.com/technology-innovation/women-in-tech');
+
             break;
     }
 
@@ -257,7 +272,8 @@ textbox.addEventListener('keypress', function (e) {
                     chatbotSendMessage("Here to help, pick an option:")
                     optionsSelection();
                 }, 2000);
-                resourcesSelection();
+                    resourcesSelection();
+                
 
             }
 
