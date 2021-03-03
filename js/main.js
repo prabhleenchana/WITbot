@@ -2,15 +2,22 @@ var textbox = document.getElementById('textbox');
 var sendBtn = document.getElementById('sendBtn');
 
 var chatContainer = document.getElementById('chatContainer');
-var userName = ""; // user name input
 
 const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/; //regular expression for letters ONLY
+var promptt = prompt("Please enter your name:");
+
+var userName = '';
+
+if(promptt != "" && !regex.test(promptt)){
+    userName = promptt.trim();
+    console.log(userName);
+}
 
 var user = { message: "", counter: 0 };
 // ^^ global variable - stores users latest message
 
 //parts of coding integrated and learnt from Udemy Javascript course
-chatbotSendMessage("Hey there, what's your name?");
+chatbotSendMessage("Hi " + userName + "! I'm WITbot")
 
 let options = [
     {},
@@ -66,7 +73,7 @@ function sendMessage(messageText) {
 }
 // menu options start
 function userOptionSelection(messageText) {
-    let userChoice = parseInt(messageText.trim()); // store in var/convert string to int/and trim any spaces from user choice
+    let userChoice = parseInt(messageText); // store in var/convert string to int/and trim any spaces from user choice
     // console.log(messageText);
     // console.log(userChoice);
 
@@ -151,7 +158,7 @@ function initialiseOptions() {
 
 function resourcesSelection(messageText) {
 
-    let userChoice = parseInt(messageText.trim());
+    let userChoice = parseInt(messageText);
    
     switch (userChoice) {
 
@@ -211,93 +218,39 @@ function resourcesSelection(messageText) {
 //resources button links ends
 
 sendBtn.addEventListener('click', function (e) {
-    let messageText = textbox.value.trim();
-    userName = messageText;
-
-    if (userName != "") {
-
-        if (!regex.test(userName)) { // if username not a number - execute this
-
-            sendMessage(messageText);
-            textbox.value = "";
-            setTimeout(() => {
-                chatbotSendMessage("Hi " + userName + ", I'm WITbot")
-            }, 1000);
-            setTimeout(() => {
-                chatbotSendMessage("Here to help, pick an option:")
-                optionsSelection();
-            }, 2000);
-            resourcesSelection();
-
-
-        }
-
-        else {
-            alert('please enter a name');
-        }
-
-    }
-
-    else if (textbox.value == "") {
-        alert('Please type in a message');
-
-    } else {
-
+    if (textbox.value == "") {
+        alert('Please type in a message'); // display alert message for no blanks - user XP better
+    }else{
         let messageText = textbox.value.trim();
-        user.message = messageText;
+
         sendMessage(messageText);
-        textbox.value = "";
+        textbox.value = '';
+        setTimeout(() => {
+            chatbotSendMessage("Here to help, pick an option:")
+            optionsSelection();
+        }, 1500);
+        resourcesSelection();
 
         userOptionSelection(messageText);
-
     }
 });
 
 textbox.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-
-        let messageText = textbox.value.trim();
-        userName = messageText;
-
-        if (userName != "") {
-
-            if (!regex.test(userName)) { // if username not a number - execute this
-
-                sendMessage(messageText);
-                textbox.value = "";
-                setTimeout(() => {
-                    chatbotSendMessage("Hi " + userName + "! I'm WITbot")
-                }, 1000);
-                setTimeout(() => {
-                    chatbotSendMessage("Here to help, pick an option:")
-                    optionsSelection();
-                }, 2000);
-                    resourcesSelection();
-                
-
-            }
-
-            else {
-                alert('please enter a name');
-
-            }
-        }
-        else if (textbox.value == "") {
+        if (textbox.value == "") {
             alert('Please type in a message'); // display alert message for no blanks - user XP better
+        }else{
+            let messageText = textbox.value.trim();
 
-        } else {
-
-            let messageText = textbox.value.trim(); // trim for spaces
-            user.message = messageText; // for processing user message 
             sendMessage(messageText);
-            textbox.value = ""; //message box to be empty after sending text
-
+            textbox.value = '';
+            setTimeout(() => {
+                chatbotSendMessage("Here to help, pick an option:")
+                optionsSelection();
+            }, 1500);
+            resourcesSelection();
+    
             userOptionSelection(messageText);
-
         }
-
     }
-
-
 });
-
