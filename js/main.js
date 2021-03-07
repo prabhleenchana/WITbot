@@ -103,6 +103,7 @@ function userOptionSelection(messageText) {
 
         case 1:
             sendMessage('Careers in CS');
+            chatbotSendMessage("");
             break; // brk each time to get out of switch 
         // case 2:
         //     sendMessage('Opportunities');
@@ -114,6 +115,7 @@ function userOptionSelection(messageText) {
 
         case 3:
             sendMessage('Skills in Computer Science');
+            chatbotSendMessage("");
             break;
 
         // case 5:
@@ -265,3 +267,7 @@ textbox.addEventListener('keypress', function (e) {
         }
     }
 });
+
+//  if (doesNeedHelp(sendMessage.value.trim().toLowerCase())) {
+// chatbotSendMessage(optionsSelection)
+// }
