@@ -7,8 +7,9 @@ const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/; //regular expression for letters ONL
 var promptt = prompt("Please enter your name:");
 
 var userName = '';
+var finished = false;
 
-if(promptt != "" && !regex.test(promptt)){
+if (promptt != "" && !regex.test(promptt)) {
     userName = promptt.trim();
     console.log(userName);
 }
@@ -19,15 +20,6 @@ var user = { message: "", counter: 0 };
 //parts of coding integrated and learnt from Udemy Javascript course
 chatbotSendMessage("Hi " + userName + "! I'm WITbot")
 
-let options = [
-    {},
-    { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('1')>Careers in CS</button>" },
-    { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Opportunities</button>" },
-    { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('3')>Resources</button>" },
-    { number: 4, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('4')>Skills in CS</button>" },
-    // { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
-
-];
 
 function chatbotSendMessage(messageText) {
 
@@ -38,7 +30,9 @@ function chatbotSendMessage(messageText) {
     messageElement.style.margin = "10px";
     messageElement.style.padding = "5px";
 
-    messageElement.innerHTML = "<span>Chatbot: </span>" +
+    
+    messageElement.innerHTML = `<img src="assets/img/logo-transparent.png" width="30px"
+    alt="chatbot logo">` + "<span>WITbot: </span>" +
         "<span style=" + "margin-top:10px; padding:10px" + ">" + messageText + "</span>";
 
     messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
@@ -59,7 +53,8 @@ function sendMessage(messageText) {
     messageElement.style.margin = "10px";
     messageElement.style.padding = "5px";
 
-    messageElement.innerHTML = "<span>You: </span>" +
+    messageElement.innerHTML = `<img src="assets/img/user-icon.png" width="20px"
+    alt="user logo">` + "<span>You: </span>" +
         "<span style=" + "margin-top:10px; padding:10px" + ">" + messageText + "</span>";
 
     messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
@@ -72,6 +67,33 @@ function sendMessage(messageText) {
 
 }
 // menu options start
+function optionsSelection() {
+    let options = [
+         {},
+         { number: 1, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('1')>Careers in CS</button>" },
+        //  { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Opportunities</button>" },
+         { number: 2, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('2')>Resources</button>" },
+         { number: 3, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('3')>Skills in CS</button>" },
+         // { number: 5, buttonClicked: "<button style= 'margin:5px; color:white; background:gray' onClick=userOptionSelection('5')>Women in Tech</button>" },
+     
+     ];
+     var messageElement = document.createElement('div');
+     messageElement.classList.add('w-50');
+     messageElement.classList.add('float-left');
+     messageElement.classList.add('shadow-sm');
+     messageElement.style.margin = "10px";
+     messageElement.style.padding = "5px";
+ 
+     for (let i = 1; i < options.length; i++) {
+         messageElement.innerHTML += "<br>" + // break line with br tag
+             "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
+             + options[i].buttonClicked;
+     }
+ 
+     messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 });
+     chatContainer.appendChild(messageElement);     // parse text - string to int
+ 
+ }
 function userOptionSelection(messageText) {
     let userChoice = parseInt(messageText); // store in var/convert string to int/and trim any spaces from user choice
     // console.log(messageText);
@@ -82,15 +104,15 @@ function userOptionSelection(messageText) {
         case 1:
             sendMessage('Careers in CS');
             break; // brk each time to get out of switch 
+        // case 2:
+        //     sendMessage('Opportunities');
+        //     break;
         case 2:
-            sendMessage('Opportunities');
-            break;
-        case 3:
             sendMessage('Resources');
             initialiseOptions();
             break;
 
-        case 4:
+        case 3:
             sendMessage('Skills in Computer Science');
             break;
 
@@ -102,26 +124,6 @@ function userOptionSelection(messageText) {
         //     chatbotSendMessage("Please choose a valid number");// option error in chat
     }
     // console.log(user);
-}
-
-function optionsSelection() {
-
-    var messageElement = document.createElement('div');
-    messageElement.classList.add('w-50');
-    messageElement.classList.add('float-left');
-    messageElement.classList.add('shadow-sm');
-    messageElement.style.margin = "10px";
-    messageElement.style.padding = "5px";
-
-    for (let i = 1; i < options.length; i++) {
-        messageElement.innerHTML += "<br>" + // break line with br tag
-            "<span style=" + "margin-top:10px; padding:10px" + ">" + "" + "</span>"
-            + options[i].buttonClicked;
-    }
-
-    messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 });
-    chatContainer.appendChild(messageElement);     // parse text - string to int
-
 }
 //menu options end
 
@@ -159,7 +161,7 @@ function initialiseOptions() {
 function resourcesSelection(messageText) {
 
     let userChoice = parseInt(messageText);
-   
+
     switch (userChoice) {
 
         case 1:
@@ -213,22 +215,26 @@ function resourcesSelection(messageText) {
 
             break;
     }
-
+    finished = true;
 }
 //resources button links ends
+
 
 sendBtn.addEventListener('click', function (e) {
     if (textbox.value == "") {
         alert('Please type in a message'); // display alert message for no blanks - user XP better
-    }else{
+    } else {
         let messageText = textbox.value.trim();
 
         sendMessage(messageText);
         textbox.value = '';
+        if (finished) return
+
         setTimeout(() => {
-            chatbotSendMessage("Here to help, pick an option:")
+            chatbotSendMessage("Here to support you, click an option to get started:")
             optionsSelection();
         }, 1500);
+
         resourcesSelection();
 
         userOptionSelection(messageText);
@@ -236,20 +242,25 @@ sendBtn.addEventListener('click', function (e) {
 });
 
 textbox.addEventListener('keypress', function (e) {
+
     if (e.key === 'Enter') {
+
         if (textbox.value == "") {
             alert('Please type in a message'); // display alert message for no blanks - user XP better
-        }else{
+        } else {
             let messageText = textbox.value.trim();
 
             sendMessage(messageText);
             textbox.value = '';
+            if (finished) return
+
             setTimeout(() => {
-                chatbotSendMessage("Here to help, pick an option:")
+                chatbotSendMessage("Here to support you, click an option to get started:")
                 optionsSelection();
             }, 1500);
+
             resourcesSelection();
-    
+
             userOptionSelection(messageText);
         }
     }

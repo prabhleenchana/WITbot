@@ -1,0 +1,38 @@
+#logo {
+    animation-name: spin;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    width: 70px; 
+    height: 70px;
+    float: right;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* span { 
+    color: rgb(40, 27, 97); 
+}  */
+
+
+#sendBtn {
+        background-color:#44c767;
+        border-radius:6px;
+        border:1px solid #18ab29;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:17px;
+        padding:6px 31px;
+        text-decoration:none;
+        text-shadow:0px 1px 0px #2f6627;
+
+    }

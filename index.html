@@ -7,9 +7,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title> STEM chatbot </title>
 	<link rel="icon" type="image/png" sizes="664x612" href="assets/img/logo-transparent.png">
+	<link rel="stylesheet" href="css/style.css">
 	<!--favicon-->
-
-	<!--webpage name-->
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -29,8 +28,9 @@
 		<!-- chatbot design/style code-->
 		<div class="media" style="background-color: #919192;">
 			<!--image of chatbot logo in circle/upper bg colour-->
-			<img src="assets/img/logo.gif" class="rounded-circle float-left img-thumbnail" width="75px"
-				alt="chatbot logo">
+			<img src="assets/img/logo-transparent.png" class="rounded-circle float-left img-thumbnail" width="75px"
+				height="75px" alt="chatbot logo" id="logo">
+
 			<!-- image shape, position,size-->
 			<div class="media-body">
 				<h5 style="margin:10px; color: #ffffff;">WITbot</h5>
@@ -42,7 +42,7 @@
 		<!--messages container  /design / container name diff to main container-->
 		<div id="chatContainer" class="container border overflow-auto" style="height:500px"
 			style="background-color: #ffffff; height: 500px;">
-			<!-- <img src="assets/img/logo-transparent.png" alt="WITbot logo" height="30px"> -->
+			<!--<img src="assets/img/logo-transparent.png" alt="WITbot logo" height="30px">-->
 
 		</div>
 
@@ -51,7 +51,6 @@
 			<input id="textbox" type="text" class="form-control" placeholder="reply here..." />
 
 			<div class="input-group-append">
-
 				<!-- Send button-->
 				<button id="sendBtn" type="btton" class="btn btn-primary">Send</button>
 			</div>
@@ -60,8 +59,9 @@
 
 
 	</div>
-	<!--js file for functioning HTML-->
+
 	<script src="js/main.js"></script>
+	<!-- <script src="js/commands.js"></script> -->
 
 
 
