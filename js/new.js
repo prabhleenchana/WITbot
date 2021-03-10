@@ -4,7 +4,6 @@ let currentConversation = null // default value
 // 2 divs for CB and User seperate - into 1
 // user = to switch between user and CB 
 
-
 export function sendMessage(message, user = false, wait = 0) { // optional parameter - call SM without user message its set to false originally
     var wrapper = document.createElement('div'); // new div to take up width of container
     wrapper.style.display = 'flex';

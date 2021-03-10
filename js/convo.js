@@ -21,7 +21,7 @@ const conversations = {
         chatBubbles: [ // chatbubble array
             {
                 text: "Hello!", // bubble option selected & user's text
-                onClick: () => changeConversation(conversations.options) // changes over to next conversation
+                onClick: () => changeConversation(conversations.options) // switch over to next conversation
             },
         ],
         render: (text) => { // returning string / show for bot / without image
@@ -52,12 +52,13 @@ const conversations = {
         }
     },
 
+    //careers - advice option
     careersConfirm: {
-        message: `You would like more information to do with careers in the tech industry?`, // user output
+        message: `You would like more information to do with careers in the tech industry?`,
         chatBubbles: [
             {
                 text: "Yes please!",
-                onClick: () => changeConversation(conversations.careers)
+                onClick: () => changeConversation(conversations.careersConfid)
             },
             {
                 text: "return to options",
@@ -128,7 +129,7 @@ const conversations = {
         message: `That sounds amazing ${userName}! The industry could do with an individual like you`,
         chatBubbles: [
             {
-                text: "😁",
+                text: " 😁 ",
                 onClick: () => changeConversation(conversations.careersConfid)
             },
             {
@@ -146,13 +147,32 @@ const conversations = {
         message: `Self-confidence is key, you have my support ${userName} ❤️`,
         chatBubbles: [
             {
-                text: "",
+                text: "I agree",
                 onClick: () => changeConversation(conversations.careers)
             },
             {
                 text: "I have self doubts",
                 onClick: () => changeConversation(conversations.careersDoubts)
             }
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    improveElse: {
+        message: `There is always many areas to improve on, how about one of these?`, // user output
+        chatBubbles: [
+            {
+                text: "Skills",
+                onClick: () => changeConversation(conversations.skills)
+            },
+            {
+                text: "Careers",
+                onClick: () => changeConversation(conversations.careers)
+            },
+
         ],
         render: (text) => {
             return withChatbotIcon(text)
@@ -178,6 +198,80 @@ const conversations = {
         }
     },
 
+    //skills - advice option
+    skillsConfirm: {
+        message: `You would like more information to do with skills in the tech industry?`,
+        chatBubbles: [
+            {
+                text: "Yes please!",
+                onClick: () => changeConversation(conversations.skills)
+            },
+            {
+                text: "return to options",
+                onClick: () => changeConversation(conversations.options)
+            }
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    skills: {
+        message: `There is a wide range of skills to be learnt and developed through careers in the IT industry`,
+        chatBubbles: [
+            {
+                text: "I have already worked on developing my skills",
+                onClick: () => changeConversation(conversations.skillsImprov)
+            },
+            {
+                text: "I have a few skills, but looking to improve more",
+                onClick: () => changeConversation(conversations.skillsImprov)
+            },
+            {
+                text: "I need to improve my skill set",
+                onClick: () => changeConversation(conversations.skillsImprov1)
+            }
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    skillsImprov: {
+        message: `That's great ! Have a look at these resources to help expand your skill set`,
+        chatBubbles: [
+            {
+                text: "I'll have a look!",
+                onClick: () => changeConversation(conversations.resources)
+            },
+            {
+                text: "🙁",
+                onClick: () => changeConversation(conversations.resources)
+            }
+        ],
+        render: (text) => {
+            return withChatbotIcon(skillsImprov1)
+
+        }
+    },
+
+    skillsImprov1: {
+        message: `No worries ${userName} ! Everyone has to begin somewhere! Check out these resources for ways to improve`,
+        chatBubbles: [
+            {
+                text: "Sure!",
+                onClick: () => changeConversation(conversations.resources)
+            },
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    //resources - website links
     resourcesConfirm: {
         message: `You would like some resources to guide you on what the industry has to offer?`, // user output
         chatBubbles: [
@@ -212,7 +306,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.stemOrg)
             },
             {
-                text: "keynote speakers",
+                text: "Keynote speakers",
                 onClick: () => changeConversation(conversations.keySpeakers)
             },
             {
@@ -226,7 +320,7 @@ const conversations = {
         }
     },
 
-    codingClass: { // links to websites
+    codingClass: {
         message: `Learning new coding languages will expand your skills ${userName}`,
         chatBubbles: [
             {
@@ -247,32 +341,12 @@ const conversations = {
             setTimeout(() => { // open links 3 seconds after message
                 alert(`Check out these recommended sites ${userName}, there is always something new to learn:`)
                 window.open('https://www.codecademy.com/');
-                window.open('https://adadevelopersacademy.org/');
                 window.open('https://www.womenwhocode.com/');
                 window.open('https://skillcrush.com/');
             }, 3000)
             return withChatbotIcon(text)
         }
     },
-
-    // improveElse: {
-    //     message: `There is always many areas to improve on, how about one of these?`, // user output
-    //     chatBubbles: [
-    //         {
-    //             text: "Skills",
-    //             onClick: () => changeConversation(conversations.skills)
-    //         },
-    //         {
-    //             text: "Careers",
-    //             onClick: () => changeConversation(conversations.careers)
-    //         },
-
-    //     ],
-    //     render: (text) => {
-    //         return withChatbotIcon(text)
-
-    //     }
-    // },
 
     workshops: {
         message: `There are many workshops to take part in ${userName},
@@ -324,13 +398,11 @@ const conversations = {
         render: (text) => {
 
             setTimeout(() => {
-                alert(` ${userName}, these sites will provide you with the extra details
-                 of the opportunities that STEM careers provide:`)
+                alert(` ${userName}, you may find these sites useful with details on
+                opportunities and journeys that STEM careers provide:`)
                 window.open('https://www.stem.org.uk/');
-                window.open('https://www.womeninstem.co.uk/');
                 window.open('https://stemettes.org/');
                 window.open('https://www.wisecampaign.org.uk/wise-network/women-in-stem-networks/');
-                break;
             }, 3000)
             return withChatbotIcon(text)
 
@@ -338,7 +410,7 @@ const conversations = {
     },
 
     keySpeakers: {
-        message: `Have a listen to these event talks 🎤 ${userName}, they can be quite inspiring! `,
+        message: `Have a listen to these event talks 🎤 ${userName}, they can be quite inspiring!`,
         chatBubbles: [
             {
                 text: "I'll have a listen!",
@@ -366,12 +438,43 @@ const conversations = {
     },
 
     wit: {
-        message: `${userName}, by attending workshops you can gain a lot of insight into the industry!`,
+        message: `These amazing women have helped shape the industry ${userName}, so that you can come and shape the future! 👩‍💻`,
         chatBubbles: [
             {
-                text: "Inspirational women in Tech",
-                onClick: () => changeConversation(conversations)
+                text: "I'll check it out!",
+                onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "More resources",
+                onClick: () => changeConversation(conversations.resources)
+            },
+            {
+                text: "Back to options",
+                onClick: () => changeConversation(conversations.options)
             }
+        ],
+        render: (text) => {
+            alert(`${userName} you will enjoy reading about these fab women`)
+            window.open('https://www.everywoman.com/my-development/learning-areas/articles/inspirational-women-history-technology-edition');
+            window.open('https://www.pocket-lint.com/gadgets/news/151345-the-most-inspiring-women-in-tech');
+            window.open('https://www.womenintech.co.uk/10-famous-women-technology-changed-world');
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    help: {
+        message: `Did this help?`,
+        chatBubbles: [
+            {
+                text: "I need more information ! ",
+                onClick: () => changeConversation(conversations.?)
+            },
+            {
+                text: "Yes!",
+                onClick: () => changeConversation(conversations.optConfirm)
+            },
+            
         ],
         render: (text) => {
             return withChatbotIcon(text)
@@ -379,8 +482,28 @@ const conversations = {
         }
     },
 
+    optConfirm: {
+        message: `Back to options?`,
+        chatBubbles: [
+            {
+                text: "Yes!",
+                onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "No, I'm sorted for now thanks! ",
+                onClick: () => changeConversation(conversations.endChat)
+            },
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    //end chat conversation - close window
     endChat: {
-        message: `I'm always here for you! 👋`, // user output
+        // message: `Don't forget about me when you're a leading tech genius! 👋`,
+        message: `You can always visit whenever you need me! 👋`,
         chatBubbles: [
             {
                 text: "Goodbye!",
