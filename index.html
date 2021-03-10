@@ -7,9 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title> STEM chatbot </title>
 	<link rel="icon" type="image/png" sizes="664x612" href="assets/img/logo-transparent.png">
-	<link rel="stylesheet" href="css/style.css">
 	<!--favicon-->
-
+	<!-- <a href="javascript:closeWindow();">End Chat</a> -->
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -26,24 +26,27 @@
 		<!--Main title-->
 
 		<!-- chatbot design/style code-->
-		<div class="media" style="background-color: #919192;">
+		<div class="media" style="background-color: #bfdbf7;">
 			<!--image of chatbot logo in circle/upper bg colour-->
-			<img src="assets/img/logo-transparent.png" class="rounded-circle float-left img-thumbnail" width="75px"
+			<img src="assets/img/logo-transparent.png" 
+			class="rounded-circle float-left img-thumbnail" width="75px"
 				height="75px" alt="chatbot logo" id="logo">
 
 			<!-- image shape, position,size-->
 			<div class="media-body">
-				<h5 style="margin:10px; color: #ffffff;">WITbot</h5>
+				<h5 style="margin:10px; color: black;">WITbot</h5>
 				<!--change style to a margin / name of chatbot-->
 				<span style="margin-left: 10px; color:#265f26">Online</span>
 			</div>
 		</div>
 
 		<!--messages container  /design / container name diff to main container-->
-		<div id="chatContainer" class="container border overflow-auto" style="height:500px"
-			style="background-color: #ffffff; height: 500px;">
-			<!--<img src="assets/img/logo-transparent.png" alt="WITbot logo" height="30px">-->
+		<div id="chatContainer" class="container border overflow-auto"
+			style="background-color: #ffffff; height: 500px; position: relative;">
+		</div>
 
+		<div id="chatBubbles" style="width: 100%; justify-content:flex-end;
+		display: flex; padding-right: 20px;">
 		</div>
 
 		<!--bootstrap class for input-->
@@ -60,9 +63,8 @@
 
 	</div>
 
-	<script src="js/main.js"></script>
-	<!-- <script src="js/commands.js"></script> -->
-
+	<script src="js/new.js"></script>
+	<script src="js/convo.js"></script>
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"

@@ -1,6 +1,5 @@
 var textbox = document.getElementById('textbox');
 var sendBtn = document.getElementById('sendBtn');
-
 var chatContainer = document.getElementById('chatContainer');
 
 const regex = /[0-9.,/|;<>"'+-\s@?=:;!()]/; //regular expression for letters ONLY
@@ -267,7 +266,3 @@ textbox.addEventListener('keypress', function (e) {
         }
     }
 });
-
-//  if (doesNeedHelp(sendMessage.value.trim().toLowerCase())) {
-// chatbotSendMessage(optionsSelection)
-// }
