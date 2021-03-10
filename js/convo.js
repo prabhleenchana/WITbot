@@ -58,7 +58,7 @@ const conversations = {
         chatBubbles: [
             {
                 text: "Yes please!",
-                onClick: () => changeConversation(conversations.careersConfid)
+                onClick: () => changeConversation(conversations.careers)
             },
             {
                 text: "return to options",
@@ -148,7 +148,7 @@ const conversations = {
         chatBubbles: [
             {
                 text: "I agree",
-                onClick: () => changeConversation(conversations.careers)
+                onClick: () => changeConversation(conversations.improveElse)
             },
             {
                 text: "I have self doubts",
@@ -189,6 +189,24 @@ const conversations = {
             },
             {
                 text: "I know",
+                onClick: () => changeConversation(conversations.options)
+            }
+        ],
+        render: (text) => {
+            return withChatbotIcon(text)
+
+        }
+    },
+
+    careersToSkills: {
+        message: `Have a look at some skills you could improve on!`,
+        chatBubbles: [
+            {
+                text: "Okay!",
+                onClick: () => changeConversation(conversations.skills)
+            },
+            {
+                text: "back to options",
                 onClick: () => changeConversation(conversations.options)
             }
         ],
@@ -332,8 +350,12 @@ const conversations = {
                 onClick: () => changeConversation(conversations.resources)
             },
             {
-                text: "back to options",
+                text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "End Chat",
+                onClick: () => changeConversation(conversations.help)
             }
         ],
         render: (text) => {
@@ -363,6 +385,10 @@ const conversations = {
             {
                 text: "back to options",
                 onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "End Chat",
+                onClick: () => changeConversation(conversations.help)
             }
 
         ],
@@ -393,6 +419,10 @@ const conversations = {
             {
                 text: "back to options",
                 onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "End Chat",
+                onClick: () => changeConversation(conversations.help)
             }
         ],
         render: (text) => {
@@ -423,6 +453,10 @@ const conversations = {
             {
                 text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "End Chat",
+                onClick: () => changeConversation(conversations.help)
             }
         ],
         render: (text) => {
@@ -451,6 +485,10 @@ const conversations = {
             {
                 text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
+            },
+            {
+                text: "End Chat",
+                onClick: () => changeConversation(conversations.help)
             }
         ],
         render: (text) => {
@@ -468,13 +506,13 @@ const conversations = {
         chatBubbles: [
             {
                 text: "I need more information ! ",
-                onClick: () => changeConversation(conversations.?)
+                onClick: () => changeConversation(conversations.options)
             },
             {
                 text: "Yes!",
                 onClick: () => changeConversation(conversations.optConfirm)
             },
-            
+
         ],
         render: (text) => {
             return withChatbotIcon(text)
