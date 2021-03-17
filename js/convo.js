@@ -15,6 +15,7 @@ while (userName == '') {
     }
 }
 
+
 const conversations = {
     greeting: { // variable
         message: `Hi there ${userName} ! 😃`, // bot output
@@ -36,6 +37,10 @@ const conversations = {
                 text: "Careers in CS",
                 onClick: () => changeConversation(conversations.careersConfirm)
             },
+            // {
+            //     text: "Opportunities",
+            //     onClick: () => changeConversation(conversations.resourcesConfirm)
+            // },
             {
                 text: "Skills in CS",
                 onClick: () => changeConversation(conversations.skillsConfirm)
@@ -43,7 +48,12 @@ const conversations = {
             {
                 text: "Resources",
                 onClick: () => changeConversation(conversations.resourcesConfirm)
-            }
+            },
+            // {
+            //     text: "Women in Tech",
+            //     onClick: () => changeConversation(conversations.resourcesConfirm)
+            // }
+           
         ],
         render: (text) => {
             // return `<p>${text}</p>`
@@ -61,7 +71,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.careers)
             },
             {
-                text: "return to options",
+                text: "Return to options",
                 onClick: () => changeConversation(conversations.options)
             }
         ],
@@ -206,7 +216,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.skills)
             },
             {
-                text: "back to options",
+                text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
             }
         ],
@@ -225,7 +235,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.skills)
             },
             {
-                text: "return to options",
+                text: "Return to options",
                 onClick: () => changeConversation(conversations.options)
             }
         ],
@@ -270,7 +280,7 @@ const conversations = {
             }
         ],
         render: (text) => {
-            return withChatbotIcon(skillsImprov1)
+            return withChatbotIcon(text)
 
         }
     },
@@ -298,7 +308,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.resources)
             },
             {
-                text: "menu options",
+                text: "Menu options",
                 onClick: () => changeConversation(conversations.options)
             }
         ],
@@ -383,7 +393,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.resources)
             },
             {
-                text: "back to options",
+                text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
             },
             {
@@ -417,7 +427,7 @@ const conversations = {
                 onClick: () => changeConversation(conversations.resources)
             },
             {
-                text: "back to options",
+                text: "Back to options",
                 onClick: () => changeConversation(conversations.options)
             },
             {
@@ -431,8 +441,6 @@ const conversations = {
                 alert(` ${userName}, you may find these sites useful with details on
                 opportunities and journeys that STEM careers provide:`)
                 window.open('https://www.stem.org.uk/');
-                window.open('https://stemettes.org/');
-                window.open('https://www.wisecampaign.org.uk/wise-network/women-in-stem-networks/');
             }, 3000)
             return withChatbotIcon(text)
 
@@ -463,8 +471,7 @@ const conversations = {
             setTimeout(() => {
                 alert(`hold on ${userName}, opening recommended sites for you:`)
                 window.open('https://www.jla.co.uk/inspirational-speakers-women-stem-science-technology-engineering-mathematics/');
-                window.open('https://www.stemwomen.co.uk/blog/2020/08/stem-women-to-host-inspiring-two-day-virtual-tech-careers-event-this-september');
-                window.open('https://www.speakerscorner.co.uk/listing/technology-speakers');
+                
             }, 3000)
             return withChatbotIcon(text)
 
@@ -494,8 +501,6 @@ const conversations = {
         render: (text) => {
             alert(`${userName} you will enjoy reading about these fab women`)
             window.open('https://www.everywoman.com/my-development/learning-areas/articles/inspirational-women-history-technology-edition');
-            window.open('https://www.pocket-lint.com/gadgets/news/151345-the-most-inspiring-women-in-tech');
-            window.open('https://www.womenintech.co.uk/10-famous-women-technology-changed-world');
             return withChatbotIcon(text)
 
         }
@@ -530,7 +535,7 @@ const conversations = {
             {
                 text: "No, I'm sorted for now thanks! ",
                 onClick: () => changeConversation(conversations.endChat)
-            },
+            }
         ],
         render: (text) => {
             return withChatbotIcon(text)
@@ -552,7 +557,7 @@ const conversations = {
             return withChatbotIcon(text)
 
         }
-    },
+    }
 }
 
 changeConversation(conversations.greeting) // default value

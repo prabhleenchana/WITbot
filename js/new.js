@@ -1,4 +1,5 @@
 // import conversations from './convo.js';
+var audio = new Audio('/assets/ping.mp3');
 
 let currentConversation = null // default value
 // 2 divs for CB and User seperate - into 1
@@ -31,7 +32,10 @@ export function sendMessage(message, user = false, wait = 0) { // optional param
     setTimeout(() => {
         messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
         wrapper.appendChild(messageElement)  // append DOM - called to add to HTML     // parse text 
-        messageElement.scrollIntoView();
+        messageElement.scrollIntoView()
+        if (!user) {
+            audio.play()
+        }
     }, wait)
 
     // chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -113,23 +117,3 @@ textbox.addEventListener('keypress', function (e) {
         }
     }
 });
-
-// variable: { 
-//     message: `There's a whole world out there for you to discover!`, // user output
-//     chatBubbles: [
-//         {
-//             text: "fix next steps..",
-//             onClick: () => changeConversation(conversations.?)
-//         }
-//     ],
-//     render: (text) => {
-//         // return `<p>${text}</p>`
-//         return withChatbotIcon(text)
-
-//     }
-// }
-
-// {
-//     text: "Another option",
-//     onClick: () => alert("You clicked the other thing")
-// },
