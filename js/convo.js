@@ -136,14 +136,14 @@ const conversations = {
     },
 
     careersInterest: {
-        message: `That sounds amazing ${userName}! The industry could do with an individual like you`,
+        message: `That's a good choice ${userName}! The industry could do with an individual like you`,
         chatBubbles: [
             {
-                text: " 😁 ",
+                text: " I'm excited to pursue the career 😁 ",
                 onClick: () => changeConversation(conversations.careersConfid)
             },
             {
-                text: "I have self doubts",
+                text: "I'm having self doubts",
                 onClick: () => changeConversation(conversations.careersDoubts)
             }
         ],
