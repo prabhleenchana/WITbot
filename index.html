@@ -22,45 +22,40 @@
 	<div class="container">
 		<br>
 		<!--Main title-->
-
-		<!-- chatbot design/style code-->
 		<div class="media" style="background-color: #bfdbf7;">
-			<!--image of chatbot logo in circle/upper bg colour-->
-			<img src="assets/img/logo-transparent.png" class="rounded-circle float-left img-thumbnail" width="75px"
-				height="75px" alt="chatbot logo" id="logo">
+			<img src="assets/img/logo-transparent.png" class="rounded-circle float-left img-thumbnail"
+				alt="chatbot logo" id="logo">
 
-			<!-- image shape, position,size-->
 			<div class="media-body">
 				<h4 style="margin:10px; color: black;">WITbot</h4>
-				<!-- change style to a margin / name of chatbot -->
-				<div style="display: flex; align-items: center;" >
+				<div style="display: flex; align-items: center;">
 					<span style="margin-left: 10px; color:#265f26; padding-right: 5px;">online</span>
 					<div class id="dot-online"></div>
 				</div>
-				
+
 			</div>
-	</div>
-
-	<!--messages container  /design / container name diff to main container-->
-	<div id="chatContainer" class="container border overflow-auto"
-		style="background-color: #ffffff; height: 500px; position: relative;">
-	</div>
-
-	<div id="chatBubbles" style="width: 100%; justify-content:flex-end;
-		display: flex; padding-right: 20px;">
-	</div>
-
-	<!--bootstrap class for input-->
-	<div class="input-group">
-		<input id="textbox" type="text" class="form-control" placeholder="reply here..." />
-
-		<div class="input-group-append">
-			<!-- Send button-->
-			<button id="sendBtn" type="button" class="btn btn-outline-dark"
-				style="background-color: #bfdbf7;">SEND</button>
 		</div>
 
-	</div>
+		<!--messages container-->
+		<div id="chatContainer" class="container border overflow-auto"
+			style="background-color: #ffffff; height: 500px; position: relative;">
+		</div>
+
+		<!--chat bubbles-->
+		<div id="chatBubbles" style="width: 100%; justify-content:flex-end;
+		display: flex; padding-right: 20px;">
+		</div>
+
+		<!--textbox/send button-->
+		<div class="input-group">
+			<input id="textbox" type="text" class="form-control" placeholder="reply here..." />
+
+			<div class="input-group-append">
+				<button id="sendBtn" type="button" class="btn btn-outline-dark"
+					style="background-color: #bfdbf7;">SEND</button>
+			</div>
+
+		</div>
 
 	</div>
 
