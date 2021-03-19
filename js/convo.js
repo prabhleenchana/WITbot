@@ -1,4 +1,4 @@
-import { changeConversation, closeWindow, withChatbotIcon } from './new.js';
+import { changeConversation, closeWindow, withChatbotIcon } from './functions.js';
 
 let userName = '';
 const regex = /[A-z]+/; // more than 1 character

@@ -21,7 +21,7 @@ export function sendMessage(message, user = false, wait = 0) { // optional param
     messageElement.style.justifyContent = 'flex-start';
     messageElement.style.alignItems = 'center';
     messageElement.style.width = 'fit-content';
-    messageElement.style.backgroundColor = user ? "#D8D8D8" : "#dcd6f7";
+    messageElement.style.backgroundColor = user ? "#D8D8D8" : "#DCD6F7";
 
     if (user) { // specific style just for user - move to right side
         messageElement.style.justifyContent = 'flex-end'
