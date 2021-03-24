@@ -1,3 +1,4 @@
+import commands from "./commands.js"
 var audio = new Audio('/assets/ping.mp3');
 
 let currentConversation = null // default value
@@ -37,11 +38,9 @@ export function sendMessage(message, user = false, wait = 0) { // optional param
             audio.play()
         }
     }, wait)
-
-    // chatContainer.scrollTop = chatContainer.scrollHeight;
-
 }
-//option bubbles for user to
+
+//option bubbles for user to pick option
 export function showChatBubbles(bubbles) { // option bubbles wrapper
     const chatBubbleElement = document.getElementById("chatBubbles")
     removeAllChildNodes(chatBubbleElement) // remove previous bubbles
@@ -76,8 +75,6 @@ export function withChatbotIcon(render) { // design span for bot
 
 export function withUserIcon(text) { // design span for user 
     return `<span style="padding-right: 5px; padding-left: 5px;">You:</span><span>${text}</span>`
-    // + `<img src="assets/img/user-icon.png" width="20px"
-    // alt="user logo">`
 }
 
 export function withChatBubble(text) { // bubble options
@@ -98,7 +95,11 @@ sendBtn.addEventListener('click', function (e) {
 
         sendMessage(withUserIcon(messageText), true);
         textbox.value = '';
-
+        if (commands.has(messageText.toLowerCase())) {
+            sendMessage(withChatbotIcon(commands.get(messageText.toLowerCase())),false,2000)
+        }else{
+            sendMessage(withChatbotIcon(`I didn't quite get that`),false,2000)
+        }
     }
 });
 
@@ -113,6 +114,11 @@ textbox.addEventListener('keypress', function (e) {
 
             sendMessage(withUserIcon(messageText), true);
             textbox.value = '';
+            if (commands.has(messageText.toLowerCase())) {
+                sendMessage(withChatbotIcon(commands.get(messageText.toLowerCase())),false,2000)
+            }else{
+                sendMessage(withChatbotIcon(`I didn't quite get that`),false,2000)
+            }
 
         }
     }
