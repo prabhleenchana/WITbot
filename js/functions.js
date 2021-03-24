@@ -1,10 +1,10 @@
-// import conversations from './convo.js';
 var audio = new Audio('/assets/ping.mp3');
 
 let currentConversation = null // default value
 // 2 divs for CB and User seperate - into 1
 // user = to switch between user and CB 
 
+// Messages sent - switch between user and bot
 export function sendMessage(message, user = false, wait = 0) { // optional parameter - call SM without user message its set to false originally
     var wrapper = document.createElement('div'); // new div to take up width of container
     wrapper.style.display = 'flex';
@@ -30,7 +30,7 @@ export function sendMessage(message, user = false, wait = 0) { // optional param
     messageElement.innerHTML = message
 
     setTimeout(() => {
-        messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 1500 }); // message animations
+        messageElement.animate([{ easing: "ease-in", opacity: 0 }, { opacity: 1 }], { duration: 2000 }); // message animations
         wrapper.appendChild(messageElement)  // append DOM - called to add to HTML     // parse text 
         messageElement.scrollIntoView()
         if (!user) {
@@ -41,7 +41,7 @@ export function sendMessage(message, user = false, wait = 0) { // optional param
     // chatContainer.scrollTop = chatContainer.scrollHeight;
 
 }
-
+//option bubbles for user to
 export function showChatBubbles(bubbles) { // option bubbles wrapper
     const chatBubbleElement = document.getElementById("chatBubbles")
     removeAllChildNodes(chatBubbleElement) // remove previous bubbles
@@ -92,11 +92,11 @@ export function closeWindow() {
 
 sendBtn.addEventListener('click', function (e) {
     if (textbox.value == "") {
-        alert('Please type in a message'); // display alert message for no blanks - user XP better
+        alert('Please type in a message');
     } else {
         let messageText = textbox.value.trim();
 
-        sendMessage(messageText, true);
+        sendMessage(withUserIcon(messageText), true);
         textbox.value = '';
 
     }
@@ -107,7 +107,7 @@ textbox.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
 
         if (textbox.value == "") {
-            alert('Please type in a message'); // display alert message for no blanks - user XP better
+            alert('Please type in a message');
         } else {
             let messageText = textbox.value.trim();
 

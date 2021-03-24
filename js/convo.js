@@ -37,10 +37,10 @@ const conversations = {
                 text: "Careers in CS",
                 onClick: () => changeConversation(conversations.careersConfirm)
             },
-            // {
-            //     text: "Opportunities",
-            //     onClick: () => changeConversation(conversations.resourcesConfirm)
-            // },
+            {
+                text: "Opportunities",
+                onClick: () => changeConversation(conversations.oppConfirm)
+            },
             {
                 text: "Skills in CS",
                 onClick: () => changeConversation(conversations.skillsConfirm)
@@ -49,10 +49,10 @@ const conversations = {
                 text: "Resources",
                 onClick: () => changeConversation(conversations.resourcesConfirm)
             },
-            // {
-            //     text: "Women in Tech",
-            //     onClick: () => changeConversation(conversations.resourcesConfirm)
-            // }
+            {
+                text: "Women in Tech",
+                onClick: () => changeConversation(conversations.witConfirm)
+            }
            
         ],
         render: (text) => {
@@ -562,3 +562,35 @@ const conversations = {
 
 changeConversation(conversations.greeting) // default value
 export default conversations
+
+// bot commands for user input
+// const commands = [
+//     {
+//         "user_message": "Hello",
+//         "bot_response": "Hi there!"
+//     },
+//     {
+//         "user_message": "Hey",
+//         "bot_response": "Hello!"
+//     },
+//     {
+//         "user_message": "Hi",
+//         "bot_response": "Hey!"
+//     },
+//     {
+//         "user_message": "Bye",
+//         "bot_response": "Off already? Goodbye!"
+//     },
+//     {
+//         "user_message": "See you",
+//         "bot_response": "Until the next time!"
+//     },
+//     {
+//         "user_message": "Goodbye",
+//         "bot_response": "take care!"
+//     },
+//     {
+//         "user_message": "help",
+//         "bot_response": `to get started ${userName} pick an option!`
+//     },
+// ];
